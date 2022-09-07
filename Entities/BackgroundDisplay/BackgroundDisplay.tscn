@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Entities/BackgroundDisplay/BackgroundDisplay.gd" type="Script" id=1]
+[ext_resource path="res://Backgrounds/MainBackground/MainBackground.tres" type="Material" id=2]
+[ext_resource path="res://Backgrounds/MainBackground/debug-background2.png" type="Texture" id=3]
+
+[node name="BackgroundDisplay" type="Node2D"]
+material = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+background = ExtResource( 2 )
+
+[node name="Texture" type="Sprite" parent="."]
+use_parent_material = true
+texture = ExtResource( 3 )

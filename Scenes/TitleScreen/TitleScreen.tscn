@@ -1,0 +1,294 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://Scenes/TitleScreen/TitleScreen.gd" type="Script" id=1]
+[ext_resource path="res://Entities/BackgroundDisplay/BackgroundDisplay.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/TitleScreen/LogoLetters/v.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/TitleScreen/LogoLetters/g.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/TitleScreen/LogoLetters/d.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/TitleScreen/LogoLetters/o.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/TitleScreen/LogoLetters/d_2.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/TitleScreen/LogoLetters/A.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/TitleScreen/LogoLetters/n.png" type="Texture" id=9]
+[ext_resource path="res://Scenes/TitleScreen/LogoLetters/large_d.png" type="Texture" id=10]
+[ext_resource path="res://Scenes/TitleScreen/LogoLetters/large_E.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/TitleScreen/LogoLetters/e.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/TitleScreen/Logo.gd" type="Script" id=13]
+[ext_resource path="res://Backgrounds/DebugBackground1/debug-background-1.tres" type="Material" id=14]
+
+[sub_resource type="Animation" id=1]
+resource_name = "appear"
+length = 2.5
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Logo:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 2, 0, 0.5, -2, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.3, 2.5 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Logo:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 2, 0, 0.5, -2, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.3, 2.5 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Logo:modulate:a")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 2, 0, 1, -2, 0, 0.25, 0 ),
+"times": PoolRealArray( 0.3, 2.5 )
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "disappear"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Logo/TopRow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( -4.5, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -600 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Logo/BotRow:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( -4.5, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 600 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../TapToStart:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.297302, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Footnote:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.297302, 0.297302 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../HighscoreLabel:self_modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.3, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "idle"
+length = 6.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Logo/TopRow/A:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( -2, -2, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -15 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Logo/TopRow/d:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 1.2, 2.2 ),
+"transitions": PoolRealArray( -2, -2, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -15 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="DynamicFontData" id=6]
+font_path = "res://UI/PixelRPG.ttf"
+
+[sub_resource type="DynamicFont" id=7]
+size = 12
+font_data = SubResource( 6 )
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[node name="TitleScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 3.05176e-05
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LogoCenter" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LogoCenter"]
+autoplay = "appear"
+anims/appear = SubResource( 1 )
+anims/disappear = SubResource( 2 )
+anims/idle = SubResource( 3 )
+
+[node name="BackgroundDisplay" parent="LogoCenter" instance=ExtResource( 2 )]
+visible = false
+material = ExtResource( 14 )
+background = ExtResource( 14 )
+
+[node name="Logo" type="Position2D" parent="LogoCenter"]
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 1e-05, 1e-05 )
+script = ExtResource( 13 )
+
+[node name="TopRow" type="Position2D" parent="LogoCenter/Logo"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="A" type="Sprite" parent="LogoCenter/Logo/TopRow"]
+texture = ExtResource( 8 )
+
+[node name="d" type="Sprite" parent="LogoCenter/Logo/TopRow"]
+texture = ExtResource( 5 )
+
+[node name="v" type="Sprite" parent="LogoCenter/Logo/TopRow"]
+position = Vector2( 0, 7.66243 )
+texture = ExtResource( 3 )
+
+[node name="e" type="Sprite" parent="LogoCenter/Logo/TopRow"]
+texture = ExtResource( 12 )
+
+[node name="n" type="Sprite" parent="LogoCenter/Logo/TopRow"]
+texture = ExtResource( 9 )
+
+[node name="BotRow" type="Position2D" parent="LogoCenter/Logo"]
+position = Vector2( 0, 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="D" type="Sprite" parent="LogoCenter/Logo/BotRow"]
+texture = ExtResource( 10 )
+
+[node name="o" type="Sprite" parent="LogoCenter/Logo/BotRow"]
+texture = ExtResource( 6 )
+
+[node name="d2" type="Sprite" parent="LogoCenter/Logo/BotRow"]
+texture = ExtResource( 7 )
+
+[node name="g" type="Sprite" parent="LogoCenter/Logo/BotRow"]
+texture = ExtResource( 4 )
+
+[node name="E" type="Sprite" parent="LogoCenter/Logo/BotRow"]
+texture = ExtResource( 11 )
+
+[node name="TapToStart" type="RichTextLabel" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 53.0
+margin_right = -3.05176e-05
+margin_bottom = 89.0
+mouse_filter = 2
+custom_styles/focus = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+custom_fonts/normal_font = SubResource( 7 )
+custom_colors/default_color = Color( 1, 1, 1, 0.454902 )
+bbcode_enabled = true
+bbcode_text = "
+[center]tap to start[/center]"
+meta_underlined = false
+text = "
+tap to start"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Footnote" type="RichTextLabel" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 139.234
+margin_right = -3.05176e-05
+margin_bottom = 160.234
+custom_styles/focus = SubResource( 8 )
+custom_styles/normal = SubResource( 9 )
+bbcode_enabled = true
+bbcode_text = "
+[center]A tiny game by Mario Nowak[/center]"
+text = "
+A tiny game by Mario Nowak"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HighscoreLabel" type="RichTextLabel" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 81.4996
+margin_right = -3.05176e-05
+margin_bottom = 100.5
+custom_styles/normal = SubResource( 10 )
+bbcode_enabled = true
+bbcode_text = "
+[center]Highscore: 0[/center]"
+text = "
+Highscore: 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="animation_finished" from="LogoCenter/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

@@ -1,0 +1,114 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Entities/Projectiles/Projectile/Projectile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Entities/Projectiles/HummingProjectile/HummingProjectile.gd" type="Script" id=2]
+[ext_resource path="res://Entities/Projectiles/Shapes/circle-32.png" type="Texture" id=3]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ), null ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=2]
+resource_name = "appear"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 0.241484, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 0.24, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "request_player"
+} ]
+}
+
+[sub_resource type="CircleShape2D" id=3]
+resource_local_to_scene = true
+radius = 15.0333
+
+[sub_resource type="Curve" id=4]
+min_value = -200.0
+max_value = 200.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.112971, -600 ), 21.1973, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
+
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0.246862, 1 ), 0.0, -0.0143941, 0, 0, Vector2( 0.761506, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+resource_local_to_scene = true
+lifetime_randomness = 0.32
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 130.0
+initial_velocity_random = 0.15
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = -100.0
+linear_accel_random = 0.3
+linear_accel_curve = SubResource( 5 )
+angle = 113.4
+angle_random = 0.53
+scale = 1.5
+scale_random = 0.7
+scale_curve = SubResource( 7 )
+
+[node name="Projectile" instance=ExtResource( 1 )]
+modulate = Color( 1, 0.352941, 0.352941, 1 )
+script = ExtResource( 2 )
+damage = 20
+points = 2.0
+gravity_constant = 0.1
+
+[node name="Sprite" parent="." index="0"]
+frames = SubResource( 1 )
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "appear"
+anims/appear = SubResource( 2 )
+
+[node name="ProjectileArea" parent="." index="2"]
+visible = false
+
+[node name="Hitbox" parent="ProjectileArea" index="0"]
+shape = SubResource( 3 )
+
+[node name="ExplostionParticles" parent="." index="4"]
+process_material = SubResource( 8 )

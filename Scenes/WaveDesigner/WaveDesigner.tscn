@@ -1,0 +1,41 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Entities/Room/RandomShootingRoom/RandomShootingRoom.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/WaveDesigner/WaveDesigner.gd" type="Script" id=2]
+[ext_resource path="res://Entities/Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Entities/Shooting/Wave.gd" type="Script" id=4]
+[ext_resource path="res://Entities/Shooting/Attack.gd" type="Script" id=5]
+[ext_resource path="res://Entities/Projectiles/WallBouncingProjectile/WallBouncingProjectileShot.gd" type="Script" id=6]
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 6 )
+buildup_time = 0.0
+cooldown_time = 0.0
+position = Vector2( 1, -1 )
+warning = false
+number_bounces = 4
+direction_degree = -135.0
+speed = 150.0
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 5 )
+shots = [ SubResource( 4 ) ]
+cooldown_time = 8.0
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 4 )
+attacks = [ SubResource( 5 ) ]
+
+[node name="WaveDesigner" type="Node2D"]
+script = ExtResource( 2 )
+wave = SubResource( 1 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+
+[node name="Room" parent="." instance=ExtResource( 1 )]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="ProjectileContainer" type="Node2D" parent="."]
+[connection signal="done_shooting" from="." to="." method="shoot"]

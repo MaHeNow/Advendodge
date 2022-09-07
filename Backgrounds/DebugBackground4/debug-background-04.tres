@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=2]
+
+[ext_resource path="res://Entities/BackgroundDisplay/Background/VertiOscBackground.gd" type="Script" id=1]
+[ext_resource path="res://Shader/verticalOscillationColorCycle.shader" type="Shader" id=2]
+[ext_resource path="res://Dungeons/DebugDungeon/Backgrounds/DebugBackground4/beta-background-04.png" type="Texture" id=3]
+[ext_resource path="res://Dungeons/DebugDungeon/Backgrounds/DebugBackground4/beta-background-04-palette.png" type="Texture" id=4]
+
+[resource]
+shader = ExtResource( 2 )
+shader_param/oscillation_speed = 1.0
+shader_param/amplitude = 0.12
+shader_param/freq = 10.0
+shader_param/y_offset = 0.1
+shader_param/cycle_speed = 5.0
+shader_param/buffer_size = 3
+shader_param/color_palette = ExtResource( 4 )
+script = ExtResource( 1 )
+texture = ExtResource( 3 )
+alpha = 0.4

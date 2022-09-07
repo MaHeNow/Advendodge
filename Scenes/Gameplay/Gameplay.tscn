@@ -1,0 +1,219 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://Scenes/Gameplay/VisibilityMask.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Gameplay/Gameplay.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Gameplay/TouchAreaUI.gd" type="Script" id=3]
+[ext_resource path="res://Entities/GameCamera/GameCamera.tscn" type="PackedScene" id=4]
+[ext_resource path="res://DebugAssets/grid-texture.png" type="Texture" id=5]
+[ext_resource path="res://UI/PauseButton/PauseButton2.png" type="Texture" id=6]
+[ext_resource path="res://TouchAreas/GreenArea3/GreenArea3.tres" type="Resource" id=7]
+[ext_resource path="res://Scenes/Gameplay/game-window-mask.png" type="Texture" id=8]
+[ext_resource path="res://Entities/Room/Room.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Characters/Butterfly/Butterfly.tres" type="Resource" id=10]
+[ext_resource path="res://Entities/BackgroundDisplay/BackgroundDisplay.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Entities/ProjectileActivityBorder/ProjectileActivityBorder.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/Gameplay/HealthBar/HealthBar.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Entities/ProjectileHandler/ProjectileHandler.tscn" type="PackedScene" id=15]
+[ext_resource path="res://UI/PixelRPG.ttf" type="DynamicFontData" id=16]
+
+[sub_resource type="DynamicFont" id=3]
+size = 12
+font_data = ExtResource( 16 )
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="Animation" id=4]
+tracks/0/type = "value"
+tracks/0/path = NodePath("GameCamera/ForegroundLayer/Anchor/HealthBar:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.203063, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1e-05 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GameCamera/ForegroundLayer/Anchor/PauseButton:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.203063, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 0 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("GameCamera/ForegroundLayer/Anchor/TouchAreaUI:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.203063, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("GameCamera/ForegroundLayer/Anchor/ScoerLabel:rect_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.2, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 0 ), Vector2( 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("GameCamera/BackgroundLayer/Anchor/BackgroundDisplay:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.2, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1 ), Vector2( 1, 1 ) ]
+}
+
+[node name="Gameplay" type="Control"]
+pause_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_horizontal_guides_": [ 240.0, 247.0 ],
+"_edit_vertical_guides_": [ 90.0 ]
+}
+character = ExtResource( 10 )
+touch_area_data = ExtResource( 7 )
+
+[node name="GameCenter" type="Position2D" parent="."]
+position = Vector2( 0, -40 )
+
+[node name="Room" parent="GameCenter" instance=ExtResource( 9 )]
+
+[node name="ProjectileHandler" parent="GameCenter" instance=ExtResource( 15 )]
+pause_mode = 1
+
+[node name="GameCamera" parent="." instance=ExtResource( 4 )]
+current = true
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="GameCamera"]
+layer = -1
+
+[node name="BackGroundGrid" type="TextureRect" parent="GameCamera/BackgroundLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 5 )
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Anchor" type="Control" parent="GameCamera/BackgroundLayer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 7.62939e-06
+margin_top = -35.0
+margin_right = 7.62939e-06
+margin_bottom = -35.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackgroundDisplay" parent="GameCamera/BackgroundLayer/Anchor" instance=ExtResource( 11 )]
+position = Vector2( 0, -1 )
+scale = Vector2( 1e-05, 1 )
+
+[node name="ForegroundLayer" type="CanvasLayer" parent="GameCamera"]
+layer = 2
+
+[node name="Anchor" type="Control" parent="GameCamera/ForegroundLayer"]
+light_mask = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VisibilityMask" type="Light2D" parent="GameCamera/ForegroundLayer/Anchor"]
+position = Vector2( 0, -40 )
+texture = ExtResource( 8 )
+mode = 3
+range_item_cull_mask = 2
+script = ExtResource( 1 )
+
+[node name="TouchAreaUI" type="Node2D" parent="GameCamera/ForegroundLayer/Anchor"]
+position = Vector2( 0, 120 )
+scale = Vector2( 1e-05, 1 )
+script = ExtResource( 3 )
+
+[node name="TouchAreaTop" type="Sprite" parent="GameCamera/ForegroundLayer/Anchor/TouchAreaUI"]
+
+[node name="PauseButton" type="Button" parent="GameCamera/ForegroundLayer/Anchor"]
+pause_mode = 2
+margin_left = -83.0
+margin_top = 87.0
+margin_right = -65.0
+margin_bottom = 105.0
+grow_horizontal = 0
+grow_vertical = 0
+rect_scale = Vector2( 1, 1e-05 )
+rect_pivot_offset = Vector2( 0.798946, 9.31686 )
+icon = ExtResource( 6 )
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" parent="GameCamera/ForegroundLayer/Anchor" instance=ExtResource( 13 )]
+position = Vector2( 1, -146 )
+scale = Vector2( 1, 1e-05 )
+
+[node name="ScoerLabel" type="RichTextLabel" parent="GameCamera/ForegroundLayer/Anchor"]
+margin_left = -60.0
+margin_top = 87.0
+margin_right = 60.0
+margin_bottom = 126.0
+rect_scale = Vector2( 1, 1e-05 )
+rect_pivot_offset = Vector2( 0, 10 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+custom_fonts/normal_font = SubResource( 3 )
+custom_styles/focus = SubResource( 1 )
+custom_styles/normal = SubResource( 2 )
+bbcode_enabled = true
+bbcode_text = "	[center]0[/center]"
+text = "	0"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProjectileActivityBorder" parent="GameCamera" instance=ExtResource( 12 )]
+visible = false
+position = Vector2( 0, -40 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/appear = SubResource( 4 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="pressed" from="GameCamera/ForegroundLayer/Anchor/PauseButton" to="." method="_on_PauseButton_pressed"]
+[connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]

@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Entities/Room/Border/border.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Entities/Room/Room.gd" type="Script" id=2]
+[ext_resource path="res://Entities/Room/Room_appear.tres" type="Animation" id=3]
+
+[node name="Room" type="Position2D"]
+use_parent_material = true
+rotation = -6.10865
+scale = Vector2( 1e-05, 1e-05 )
+script = ExtResource( 2 )
+
+[node name="Border" parent="." instance=ExtResource( 1 )]
+collision_layer = 0
+collision_mask = 0
+
+[node name="LeftPoint" type="Position2D" parent="."]
+position = Vector2( -40, 0 )
+
+[node name="BotPoint" type="Position2D" parent="."]
+position = Vector2( 0, 40 )
+
+[node name="RightPoint" type="Position2D" parent="."]
+position = Vector2( 40, 0 )
+
+[node name="TopPoint" type="Position2D" parent="."]
+position = Vector2( 0, -40 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/appear = ExtResource( 3 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

@@ -1,0 +1,28 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 color: hint_color;
+uniform vec2 center = vec2(0,0);
+uniform vec2 window_extent = vec2(0,0);
+
+void fragment(){
+	float right_border = (center.x + window_extent.x) * TEXTURE_PIXEL_SIZE.x;
+	float left_border = (center.x - window_extent.x) * TEXTURE_PIXEL_SIZE.x;
+	float top_border = (center.y - window_extent.y) * TEXTURE_PIXEL_SIZE.y;
+	float bot_border = (center.y + window_extent.y) * TEXTURE_PIXEL_SIZE.y;
+	bool x_in_border = UV.x < right_border && UV.x > left_border;
+	bool y_in_border = UV.y < bot_border && UV.y > top_border;
+	COLOR = color;
+	if(x_in_border && y_in_border){
+		COLOR.a = 0.0;
+	} else (
+	)
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/color = Color( 0.0941176, 0.0941176, 0.0941176, 1 )
+shader_param/center = Vector2( 90, 120 )
+shader_param/window_extent = Vector2( 90, 120 )

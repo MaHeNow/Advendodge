@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=2]
+
+[ext_resource path="res://Shader/interleavedOscillationColorCycling.shader" type="Shader" id=1]
+[ext_resource path="res://Entities/BackgroundDisplay/Background/InterOscBackground.gd" type="Script" id=2]
+[ext_resource path="res://Backgrounds/DebugBackground1/background-1-palette.png" type="Texture" id=3]
+[ext_resource path="res://Backgrounds/DebugBackground1/debug-background-1.png" type="Texture" id=4]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/number_offset_pixels = 2
+shader_param/even_speed = 2.0
+shader_param/even_amplitude = 0.1
+shader_param/even_freq = 10.0
+shader_param/even_offset = 0.0
+shader_param/odd_speed = 2.0
+shader_param/odd_amplitude = 0.1
+shader_param/odd_freq = 10.0
+shader_param/odd_offset = 1.0
+shader_param/cycle_speed = 2.0
+shader_param/buffer_size = 14
+shader_param/color_palette = ExtResource( 3 )
+script = ExtResource( 2 )
+texture = ExtResource( 4 )
+alpha = 1.0

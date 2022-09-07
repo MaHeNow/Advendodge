@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Entities/Projectiles/Projectile/Projectile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Entities/Projectiles/RotatingParaboleProjectile/RotatingParaboleProjectile.gd" type="Script" id=2]
+[ext_resource path="res://Entities/Projectiles/Shapes/rectangle-64-closed.png" type="Texture" id=3]
+[ext_resource path="res://Entities/Projectiles/Shapes/rectangle-64-open.png" type="Texture" id=4]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 7, 32 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0.246862, 1 ), 0.0, -0.0143941, 0, 0, Vector2( 0.761506, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+resource_local_to_scene = true
+lifetime_randomness = 0.32
+emission_shape = 2
+emission_box_extents = Vector3( 8, 32, 1 )
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 0.15
+angular_velocity = 4.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel_random = 0.3
+damping = 300.0
+angle = 113.4
+angle_random = 0.53
+scale_random = 0.99
+scale_curve = SubResource( 4 )
+
+[node name="Projectile" instance=ExtResource( 1 )]
+modulate = Color( 0.607843, 0.505882, 0.411765, 1 )
+script = ExtResource( 2 )
+damage = 20
+points = 3.0
+
+[node name="Sprite" parent="." index="0"]
+frames = SubResource( 1 )
+
+[node name="ProjectileArea" parent="." index="2"]
+visible = false
+
+[node name="Hitbox" parent="ProjectileArea" index="0"]
+shape = SubResource( 2 )
+
+[node name="ExplostionParticles" parent="." index="4"]
+amount = 18
+process_material = SubResource( 5 )
