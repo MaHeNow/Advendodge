@@ -9,6 +9,7 @@ var cooldown_scale_factor := 0.3
 var min_cooldown := 0.2
 var attack_cooldown_scale := 5
 
+
 func _init(difficulty:=0):
 	randomize()
 

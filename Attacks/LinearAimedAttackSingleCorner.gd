@@ -17,6 +17,7 @@ var corners = [
 	Vector2( 1,  1),
 ]
 
+
 func _init(difficulty:=0):
 	randomize()
 	var amount := randi() % (max_amount - min_amount + 1) + min_amount

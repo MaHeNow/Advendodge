@@ -15,8 +15,8 @@ onready var sprite_left: = $BoxLeft
 onready var tween: = $Tween
 onready var animation_player: = $AnimationPlayer
 
+
 func _ready():
-	
 	sprite_bot.visible = false
 	position = setup_position * ScreenSize.game_size
 	if abs(setup_position.x) > abs(setup_position.y):
@@ -41,7 +41,7 @@ func _ready():
 	tween.interpolate_property(self, "position", position, destination, appearence_durration, 
 		Tween.TRANS_QUAD, Tween.EASE_OUT)
 	tween.start()
-	pass
+
 
 func setup(position_: Vector2):
 	setup_position = position_

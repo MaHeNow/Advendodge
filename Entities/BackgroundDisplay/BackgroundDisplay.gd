@@ -9,6 +9,7 @@ onready var texture: Sprite = $Texture
 func _ready():
 	set_background(self.background)
 
+
 func set_background(new_background: Background):
 	background = new_background
 	if new_background is Background:

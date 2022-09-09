@@ -20,6 +20,7 @@ var corners_directions := [
 	[Vector2( 1,  1), -37],
 ]
 
+
 func _init(difficulty:=0):
 	randomize()
 	var repetitions := randi() % (max_repetitions - min_repetitions + 1) + min_repetitions

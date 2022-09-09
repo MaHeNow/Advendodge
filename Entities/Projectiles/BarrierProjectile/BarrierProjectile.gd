@@ -30,7 +30,6 @@ func _ready():
 	destination = position + (end_position - start_position)
 	
 	# explosion particles initiation
-	# TODO:
 	explosion_particles.process_material.emission_box_extents = Vector3(width / 2, length / 2, 1)
 	# scale the amount of particles by the length of the barrier
 	explosion_particles.amount *= length / 64

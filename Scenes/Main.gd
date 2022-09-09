@@ -2,14 +2,14 @@ extends Control
 
 export var character: Resource
 
+var save_folder: = "user://save_states"
+var save_file_name: = "save_state.tres"
+
 onready var gameplay: Gameplay = $Gameplay
 onready var titlescreen: TitleScreen = $TitleScreen
 onready var pause_menu: PauseMenu = $MenuLayer/PauseMenu
 onready var death_menu: DeathMenu = $MenuLayer/DeathMenu
 onready var gameplay_scene: PackedScene = preload("res://Scenes/Gameplay/Gameplay.tscn")
-
-var save_folder: = "user://save_states"
-var save_file_name: = "save_state.tres"
 
 
 func _ready():

@@ -1,6 +1,5 @@
 extends Camera2D
 
-onready var tween: Tween = $Tween
 export var move_speed: float = 0.5;
 
 var _duration = 0.0
@@ -12,8 +11,12 @@ var _previous_x = 0.0
 var _previous_y = 0.0
 var _last_offset = Vector2(0, 0)
 
+onready var tween: Tween = $Tween
+
+
 func _ready():
 	pass
+
 
 # Shake with decreasing intensity while there's time remaining.
 func _process(delta):
@@ -45,6 +48,7 @@ func _process(delta):
 		_timer = 0
 		set_offset(get_offset() - _last_offset)
 
+
 # Kick off a new screenshake effect.
 func shake(duration, frequency, amplitude):
 	# Initialize variables.
@@ -57,6 +61,7 @@ func shake(duration, frequency, amplitude):
 	# Reset previous offset, if any.
 	set_offset(get_offset() - _last_offset)
 	_last_offset = Vector2(0, 0)
+
 
 func regular_shake():
 	# Initialize variables.

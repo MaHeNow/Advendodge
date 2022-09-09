@@ -1,5 +1,5 @@
-extends Attack
 class_name LinearAimedAttack
+extends Attack
 
 var base_cooldown := 0.5
 var cooldown_scale := 0.4
@@ -9,6 +9,7 @@ var max_amount := 15
 
 var base_speed := 100
 var speed_scale := 10
+
 
 func _init(difficulty:=0):
 	var amount := randi() % (max_amount - min_amount + 1) + min_amount
